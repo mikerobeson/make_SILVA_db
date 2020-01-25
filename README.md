@@ -41,10 +41,10 @@ I will eventually post more details of the pipeline and code used to generate th
   As you can see, we have an insect and a bacterial sequence (*Note: for the bacteria this is not a mitochondria / chlroplast / plastid sequence!*) both annotated with the species label *Oryza sativa* (rice). In most cases the species rank information seems okay, but there are enough issues like the one above, that convinced me to generally be cautious of the species label. If you do not want to make use of the species labels simply remove the `-s` flag.
 
   Also note, I've not curated the species names. This is important as you may have (nearly) identical sequences that point to very slightly different species label annotations, such as:
-    - s__Clostridioides_difficile
-    - s__Clostridioides_difficile_R20291
+  - s__Clostridioides_difficile
+  - s__Clostridioides_difficile_R20291
 
-  So, is your sequence is similar to these, you'd think it should be classified as `s__Clostridioides_difficile`. This will not be the case, as the specific species strings are different. What the classifier may actually return is `g__Clostridioides`. This is not the fault of the classifier, *per se*, but a problem of annotation. I have some ideas on how to mitigate this. In brief, just return the first two words of the entire species string.
+  So, if your sequence is similar to these, you'd think it should be classified as `s__Clostridioides_difficile`. This will not be the case, as the specific species strings are different. What the classifier may actually return is the upper-level taxonomy `g__Clostridioides`. This is not the fault of the classifier *per se*, but a problem of annotation. I have some ideas on how to mitigate this, e.g. just return the first two words (i.e. *Clostridioides* and *difficile*) of the species string.
 
 
 3. Remove taxonomy descriptions from FASTA headers, and convert the sequences from RNA to DNA. Do this for both the aligned and unaligned FASTA files. (In QIIME 2 environment.)
