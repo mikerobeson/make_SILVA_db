@@ -3,7 +3,7 @@ General procedure for making QIIME 2 compatible SILVA reference files
 
 # SILVA-dbs
 
-This repository is intended to be a collection of formatted [SILVA](https://www.arb-silva.de/) files for use in [QIIME 1](http://qiime.org/) or [QIIME 2](https://qiime2.org/). If you use the SILVA reference files be sure to read their [dual-use license](https://www.arb-silva.de/silva-license-information) for commercial and non-commercial use. The approach I take here is partly inspired by my prior experiences parsing reference databases as well as from many other discussions and online resources.
+This repository is intended to be a collection of formatted [SILVA](https://www.arb-silva.de/) files for use in [QIIME 1](http://qiime.org/) or [QIIME 2](https://qiime2.org/). If you use the SILVA reference files be sure to read their [license](https://www.arb-silva.de/silva-license-information). The approach I take here is partly inspired by my prior experiences parsing reference databases as well as from many other discussions and online resources.
 
 
 In brief, I use the following collection of scripts, with modification, and some manual edits to generate a QIIME formatted SSU & LSU gene sequence reference sets. If you are here, I assume you have QIIME 1 & QIIME 2 installed. We'll be making use of these two environments as they contain most the dependencies you need to run the pipeline outlined here.
@@ -35,8 +35,8 @@ I will eventually post more details of the pipeline and code used to generate th
 ```
 
   * Note, I've used the optional flag to include the species labels. But be wary! For example, there are taxa annotated with the species label of the host or source rather than the sequence it self. Here is an example:
-    - d__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Enterobacteriales; f__Enterobacteriaceae; g__Serratia; s__Oryza_sativa_Indica_Group_(long-grained_rice)
-    - d__Eukaryota; p__Arthropoda; c__Insecta; o__Hemiptera; f__Hemiptera; g__Hemiptera; s__Oryza_sativa_Indica_Group_(long-grained_rice)
+    - d__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Enterobacteriales; f__Enterobacteriaceae; g__Serratia; s__Oryza_sativa
+    - d__Eukaryota; p__Arthropoda; c__Insecta; o__Hemiptera; f__Hemiptera; g__Hemiptera; s__Oryza_sativa
 
   As you can see, we have an insect and a bacterial sequence (*Note: for the bacteria this is not a mitochondria / chlroplast / plastid sequence!*) both annotated with the species label *Oryza sativa* (rice). In most cases the species rank information seems okay, but there are enough issues like the one above, that convinced me to generally be cautious of the species label. If you do not want to make use of the species labels simply remove the `-s` flag.
 
@@ -44,7 +44,7 @@ I will eventually post more details of the pipeline and code used to generate th
   - s__Clostridioides_difficile
   - s__Clostridioides_difficile_R20291
 
-  So, if your sequence is similar to these, you'd think it should be classified as `s__Clostridioides_difficile`. This will not be the case, as the specific species strings are different. What the classifier may actually return is the upper-level taxonomy `g__Clostridioides`. This is not the fault of the classifier *per se*, but a problem of annotation. I have some ideas on how to mitigate this, e.g. just return the first two words (i.e. *Clostridioides* and *difficile*) of the species string.
+  So, if your sequence is similar to these, you'd think it should be classified as `s__Clostridioides_difficile`. This will not be the case, as the specific species strings are different. What the classifier may actually return is the upper-level taxonomy `g__Clostridioides`. This is not the fault of the classifier *per se*, but a problem of annotation. Because of this I only return the first two words (i.e. *Clostridioides* and *difficile*) of the "species" string.
 
 
 3. Remove taxonomy descriptions from FASTA headers, and convert the sequences from RNA to DNA. Do this for both the aligned and unaligned FASTA files. (In QIIME 2 environment.)
@@ -175,21 +175,21 @@ I will eventually post more details of the pipeline and code used to generate th
   -e 23445
   ```
 
-  * Remove gaps from sequence. We will be using this output to make a EMP V4 region classifier. *Since this is a simple enough task, I decided to make use of [bioawk](https://github.com/lh3/bioawk), more info can be found [here](https://github.com/vsbuffalo/bioawk-tutorial/blob/master/README.md).*
+  * Remove gaps from sequence. We will be using this output to make a EMP V4 region classifier.
 
   ```
-  bioawk -c fastx 'gsub("-","") $seq {print ">" $name; print $seq}' \
-  SILVA_align_seqs_polyfilt_lenfilt_empv4.fasta \
-  > SILVA_empv4.fasta
+  python degap_fasta.py \
+    -i SILVA_align_seqs_polyfilt_lenfilt_empv4.fasta \
+    -o SILVA_empv4.fasta
   ```
 
-  * Because we use the alignment to extract the V4 region, not all sequences will have enough data through this region of the alignment and must be removed; i.e. they contian only gaps). We'll keep any sequence with at least 200 bp.
+  * Because we use the alignment to extract the V4 region, not all sequences will have enough data through this region of the alignment and must be removed; i.e. they contian only gaps). We'll keep any sequence with at least 200 bp using
+  [vsearch](https://github.com/torognes/vsearch).
 
   ```
-  bioawk -c fastx \
-    '{if (length($seq) >= 200) print ">"$name"\n"$seq} ' \
-     SILVA_empv4.fasta \
-     > SILVA_empv4_emptyrem.fasta
+vsearch --fastx_filter SILVA_empv4.fasta \
+  --fastq_minlen 200 \
+  --fastaout SILVA_empv4_emptyrem.fasta
   ```
 
   * OPTIONAL STEP: Depending on how you wish to leverage your taxonomy, you may or may not want to dereplicate your sequences. If you do dereplicate your sequences, then you'll have to make a consensus taxonomy. This is a good move if you are using closed-reference style approaches, as you only want a single taxonomy for a given unique sequence variant. Otherwise you can keep the identical sequences and let the classifier, and tools like [clawback](https://github.com/BenKaehler/q2-clawback/blob/master/README.md) handle the case for identical short sequences with differing taxonomies.

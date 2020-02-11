@@ -61,7 +61,12 @@ def make_acc_to_species_tid_dict(taxmap_file):
 		else:
 			ll = sline.split('\t')
 			full_acc = '.'.join(ll[0:3])
-			species = ll[4].strip()
+			species = ' '.join(ll[4].strip().split()[:2])
+            # Above returns first two words of species label
+            # e.g. to handle cases for:
+            #   Clostridioides difficile
+            #   Clostridioides difficile R20291
+            # both should be returned as Clostridioides difficile
 			tid = ll[5].strip()
 			acc_species_tid[full_acc] = (species, tid)
 	print('Number of \"{Full Accession: (species, TaxID)}\" records in taxmp: ',
