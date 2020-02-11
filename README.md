@@ -23,7 +23,7 @@ I will eventually post more details of the pipeline and code used to generate th
   * `SILVA_138_SSURef_NR99_tax_silva_full_align_trunc.fasta`
 
 
-2. Parse the SILVA silva_v132_lsu_taxonomy. (In QIIME 2 environment.)
+2. Parse the SILVA 138 Taxonomy. (In QIIME 2 environment.)
 
   ```
   python parse_silva_taxonomy.py \
