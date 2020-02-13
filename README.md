@@ -38,7 +38,7 @@ I will eventually post more details of the pipeline and code used to generate th
     - d__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Enterobacteriales; f__Enterobacteriaceae; g__Serratia; s__Oryza_sativa
     - d__Eukaryota; p__Arthropoda; c__Insecta; o__Hemiptera; f__Hemiptera; g__Hemiptera; s__Oryza_sativa
 
-  As you can see, we have an insect and a bacterial sequence (*Note: for the bacteria this is not a mitochondria / chlroplast / plastid sequence!*) both annotated with the species label *Oryza sativa* (rice). In most cases the species rank information seems okay, but there are enough issues like the one above, that convinced me to generally be cautious of the species label. If you do not want to make use of the species labels simply remove the `-s` flag.
+  As you can see, we have an insect and a bacterial sequence (*Note: for the bacteria this is not a mitochondria / chloroplast / plastid sequence!*) both annotated with the species label *Oryza sativa* (rice). In most cases the species rank information seems okay, but there are enough issues like the one above, that convinced me to generally be cautious of the species label. If you do not want to make use of the species labels simply remove the `-s` flag.
 
   Also note, I've not curated the species names. This is important as you may have (nearly) identical sequences that point to very slightly different species label annotations, such as:
   - s__Clostridioides_difficile
@@ -50,7 +50,7 @@ I will eventually post more details of the pipeline and code used to generate th
 3. Remove taxonomy descriptions from FASTA headers, and convert the sequences from RNA to DNA. Do this for both the aligned and unaligned FASTA files. (In QIIME 2 environment.)
 
   ```
-  python covnert_rna_to_dna.py \
+  python convert_rna_to_dna.py \
     -i SILVA_138_SSURef_NR99_tax_silva_trunc.fasta \
     -o SILVA_seqs.fasta
   ```
