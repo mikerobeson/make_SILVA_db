@@ -84,14 +84,14 @@ I will eventually post more details of the pipeline and code used to generate th
 ```
 
 
-6. Now we'll parse the aligned FASTA file so that it contains the same sequences of our unaligned filtered sequences. (In QIIME 1 environment.)
+6. Now we'll parse the aligned FASTA file so that it contains the same sequences of our unaligned filtered sequences.
 
 
   ```
   egrep '^>' SILVA_seqs_polyfilt_lenfilt.fasta | sed 's/>//g' > ids_to_keep.txt
 
-  filter_fasta.py \
-  -s ids_to_keep.txt \
+  filter_fasta_by_seq_id.py \
+  -l ids_to_keep.txt \
   -f SILVA_align_seqs.fasta \
   -o SILVA_align_seqs_polyfilt_lenfilt.fasta
   ```
