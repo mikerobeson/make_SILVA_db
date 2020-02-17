@@ -91,9 +91,9 @@ I will eventually post more details of the pipeline and code used to generate th
   egrep '^>' SILVA_seqs_polyfilt_lenfilt.fasta | sed 's/>//g' > ids_to_keep.txt
 
   filter_fasta_by_seq_id.py \
-  -l ids_to_keep.txt \
-  -f SILVA_align_seqs.fasta \
-  -o SILVA_align_seqs_polyfilt_lenfilt.fasta
+    -l ids_to_keep.txt \
+    -f SILVA_align_seqs.fasta \
+    -o SILVA_align_seqs_polyfilt_lenfilt.fasta
   ```
 
 
@@ -169,10 +169,10 @@ I will eventually post more details of the pipeline and code used to generate th
 
   ```
   python extract_alignment_region.py \
-  -i SILVA_align_seqs_polyfilt_lenfilt.fasta \
-  -o SILVA_align_seqs_polyfilt_lenfilt_empv4.fasta \
-  -s 13862 \
-  -e 23445
+    -i SILVA_align_seqs_polyfilt_lenfilt.fasta \
+    -o SILVA_align_seqs_polyfilt_lenfilt_empv4.fasta \
+    -s 13862 \
+    -e 23445
   ```
 
   * Remove gaps from sequence. We will be using this output to make a EMP V4 region classifier.
