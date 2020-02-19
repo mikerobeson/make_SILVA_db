@@ -1,4 +1,4 @@
-#!/ur/bin/env python
+#!/usr/bin/env python
 # By: Mike Robeson Dec 20, 2019
 # I ran this code within the `qiime2-2019.10` environment.
 # Simple concept code to prepare a Greengenes-like taxonomy for SILVA (v138).
