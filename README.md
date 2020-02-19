@@ -90,7 +90,7 @@ I will eventually post more details of the pipeline and code used to generate th
   ```
   egrep '^>' SILVA_seqs_polyfilt_lenfilt.fasta | sed 's/>//g' > ids_to_keep.txt
 
-  filter_fasta_by_seq_id.py \
+  python filter_fasta_by_seq_id.py \
     -l ids_to_keep.txt \
     -f SILVA_align_seqs.fasta \
     -o SILVA_align_seqs_polyfilt_lenfilt.fasta
