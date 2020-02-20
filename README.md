@@ -268,4 +268,4 @@ vsearch --fastx_filter SILVA_empv4.fasta \
     --o-classifier SILVA-v138-515f-806r-classifier.qza
 ```
 
-That's it! I'll periodically update this as time permits. If you have suggestions for improving this, then by all means, let me know. Even better, submit a pull request!
+That's it! I'll periodically update this as time permits. If you have suggestions for improving this, then by all means, let me know. Even better, submit a pull request! If you find this useful, I'd appreciate any acknowledgments.
