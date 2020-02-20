@@ -57,7 +57,7 @@ I will eventually post more details of the pipeline and code used to generate th
 
   For alignment files, use `-g` to convert '.' to '-'
   ```
-  python covnert_rna_to_dna.py \
+  python convert_rna_to_dna.py \
     -i SILVA_138_SSURef_NR99_tax_silva_full_align_trunc.fasta \
     -o SILVA_align_seqs.fasta \
     -g
