@@ -92,7 +92,7 @@ I will eventually post more details of the pipeline and code used to generate th
 
   python filter_fasta_by_seq_id.py \
     -l ids_to_keep.txt \
-    -f SILVA_align_seqs.fasta \
+    -i SILVA_align_seqs.fasta \
     -o SILVA_align_seqs_polyfilt_lenfilt.fasta
   ```
 
