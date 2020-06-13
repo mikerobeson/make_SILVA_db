@@ -102,7 +102,7 @@ I will eventually post more details of the pipeline and code used to generate th
   ```
 
 
-7. Extract V4 region using [EMP 515-806 primers](http://www.earthmicrobiome.org/protocols-and-standards/16s/) locations. This approach allows us to retain more sequences within this region as opposed to using primer sequence to find and remove the corresponding region. (In QIIME 2 environment.)
+7. Extract V4 region using [EMP 515-806 primers](http://www.earthmicrobiome.org/protocols-and-standards/16s/) llignmentocations. This approach allows us to retain more sequences within this region as opposed to using primer sequence to find and remove the corresponding region. However, feel free to use [qiime feature-classifier extract-reads](https://docs.qiime2.org/2020.2/plugins/available/feature-classifier/extract-reads/) instead. Then you can skip down to creating a consensus taxonomy.
 
   * We'll do this by making a temporary small alignment file to map primers to:
 
