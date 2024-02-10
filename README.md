@@ -117,7 +117,7 @@ I will eventually post more details of the pipeline and code used to generate th
     --preservecase \
     --inputorder \
     --thread 4 \
-    --keeplength 
+    --keeplength \
     --addfragments emp_primers.fasta  \
     --mapout short_alignment.fasta \
     > emp_primers_aln_map.txt
