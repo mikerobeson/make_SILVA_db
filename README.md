@@ -110,13 +110,17 @@ I will eventually post more details of the pipeline and code used to generate th
   head -n 500 SILVA_align_seqs_polyfilt_lenfilt.fasta > short_alignment.fasta
   ```
 
-  * Run mafft to map our primers to the short alignment.
+  * Run mafft to map our primers to the short alignment. You may want to consider adding the [--keeplength](https://mafft.cbrc.jp/alignment/software/addsequences.html) parameter.
 
   ```
   mafft \
-  --addfragments emp_primers.fasta  \
-  --mapout short_alignment.fasta \
-  > emp_primers_aln_map.txt
+    --preservecase \
+    --inputorder \
+    --thread 4 \
+    --keeplength 
+    --addfragments emp_primers.fasta  \
+    --mapout short_alignment.fasta \
+    > emp_primers_aln_map.txt
   ```
 
   * Let's look at the output. *Note the mapping file name is based on the `emp_primers.fasta` file name, not the output of the actual alignment*.
