@@ -2,7 +2,7 @@
 General procedure for making QIIME 2 compatible SILVA reference files
 
 **Note:**
-*Much of this code has been refactored, and much improved, as part of the [RESCRIPt plugin](https://github.com/bokulich-lab/RESCRIPt) for QIIME 2 (Released on June 12, 2020). Give it a try! I will leave this repo here for a while.* 
+*Much of this code has been refactored, and much improved, as part of the [RESCRIPt plugin](https://github.com/bokulich-lab/RESCRIPt) for QIIME 2 (Released on June 12, 2020). Give it a try!* 
 
 
 
