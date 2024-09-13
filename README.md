@@ -1,8 +1,10 @@
+[![Downloads](https://img.shields.io/github/downloads/mikerobeson/make_SILVA_db/total.svg?style=for-the-badge)](https://github.com/mikerobeson/make_SILVA_db/releases)
+
 # make_SILVA_db
 General procedure for making QIIME 2 compatible SILVA reference files
 
 **Note:**
-*Much of this code has been refactored, and much improved, as part of the [RESCRIPt plugin](https://github.com/bokulich-lab/RESCRIPt) for QIIME 2 (Released on June 12, 2020). Give it a try!* 
+*Much of this code has been refactored, and much improved, as part of the [RESCRIPt plugin](https://github.com/bokulich-lab/RESCRIPt) for QIIME 2 (Released on June 12, 2020). Give it a try! Please consider citing RESCRIPt if you use this version of the code.* 
 
 
 
