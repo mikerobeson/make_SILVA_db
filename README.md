@@ -4,7 +4,7 @@
 General procedure for making QIIME 2 compatible SILVA reference files
 
 **Note:**
-*Much of this code has been refactored, and much improved, as part of the [RESCRIPt plugin](https://github.com/bokulich-lab/RESCRIPt) for QIIME 2 (Released on June 12, 2020). Give it a try! Please consider citing RESCRIPt if you use this version of the code.* 
+*Much of this code has been refactored, and much improved, as part of the [RESCRIPt plugin](https://github.com/bokulich-lab/RESCRIPt) for QIIME 2 (Released on June 12, 2020). Give it a try! Please consider citing RESCRIPt if you use this version of the code. Also, please note that different versions of the SILVA database are released under different licenses. Refer to the [current SILVA release license information](https://www.arb-silva.de/silva-license-information/) for more details. [How to cite SILVA](https://www.arb-silva.de/contact/).*
 
 
 
