@@ -1,5 +1,3 @@
-[![Downloads](https://img.shields.io/github/downloads/mikerobeson/make_SILVA_db/total.svg?style=for-the-badge)](https://github.com/mikerobeson/make_SILVA_db/releases)
-
 # make_SILVA_db
 General procedure for making QIIME 2 compatible SILVA reference files
 
